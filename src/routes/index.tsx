@@ -4,11 +4,14 @@ import {
   ArrowRight,
   Instagram,
   MapPin,
+  Menu,
   MessageCircle,
   Ruler,
   Scissors,
   Sparkles,
+  X,
 } from "lucide-react";
+import { useState } from "react";
 
 import heroImage from "../assets/sancea-hero.jpg";
 import collectionsImage from "../assets/sancea-collections.jpg";
@@ -79,10 +82,14 @@ function CatalogImage({ pos, alt }: { pos: string; alt: string }) {
 }
 
 function Index() {
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+
+  const closeMobileMenu = () => setMobileMenuOpen(false);
+
   return (
     <main className="overflow-hidden bg-background">
       <header className="absolute inset-x-0 top-0 z-20 border-b border-ivory/20">
-        <div className="mx-auto flex h-24 max-w-[90rem] items-center justify-between px-5 md:px-10">
+        <div className="mx-auto grid h-24 max-w-[90rem] grid-cols-[minmax(0,1fr)_auto] items-center gap-4 px-5 md:px-10 lg:flex lg:justify-between">
           <a href="#top" aria-label="Sancea home"><Wordmark inverse /></a>
           <nav className="hidden items-center gap-8 text-[0.68rem] font-semibold uppercase tracking-[0.16em] text-ivory/75 lg:flex">
             <a className="transition hover:text-gold" href="#collections">Collections</a>
@@ -91,9 +98,38 @@ function Index() {
             <a className="transition hover:text-gold" href="#portfolio">Portfolio</a>
             <a className="transition hover:text-gold" href="#location">Location</a>
           </nav>
-          <a href="#contact" className="inline-flex items-center gap-2 border border-gold px-4 py-3 text-[0.65rem] font-semibold uppercase tracking-[0.14em] text-ivory transition hover:bg-gold hover:text-ink">
+          <a href="#contact" className="hidden items-center gap-2 border border-gold px-4 py-3 text-[0.65rem] font-semibold uppercase tracking-[0.14em] text-ivory transition hover:bg-gold hover:text-ink lg:inline-flex">
             <MessageCircle size={15} /> <span className="hidden sm:inline">WhatsApp</span>
           </a>
+          <button
+            type="button"
+            aria-label={mobileMenuOpen ? "Close navigation menu" : "Open navigation menu"}
+            aria-expanded={mobileMenuOpen}
+            onClick={() => setMobileMenuOpen((open) => !open)}
+            className="flex h-11 w-11 shrink-0 items-center justify-center border border-gold text-ivory transition hover:bg-gold hover:text-ink lg:hidden"
+          >
+            {mobileMenuOpen ? <X size={20} /> : <Menu size={20} />}
+          </button>
+        </div>
+        <div className={`absolute inset-x-0 top-24 overflow-hidden bg-ink transition-all duration-300 lg:hidden ${mobileMenuOpen ? "max-h-[32rem] border-b border-gold/30 opacity-100" : "pointer-events-none max-h-0 opacity-0"}`}>
+          <nav className="grid px-5 py-6 text-sm text-ivory">
+            {[
+              ["Collections", "#collections"],
+              ["Services", "#services"],
+              ["Packages", "#packages"],
+              ["Portfolio", "#portfolio"],
+              ["Location", "#location"],
+            ].map(([label, href], index) => (
+              <a key={href} href={href} onClick={closeMobileMenu} className="grid grid-cols-[auto_minmax(0,1fr)_auto] items-center gap-4 border-b border-ivory/10 py-4 transition hover:text-gold">
+                <span className="text-[0.58rem] text-gold">0{index + 1}</span>
+                <span className="min-w-0 font-display text-2xl">{label}</span>
+                <ArrowRight size={15} className="shrink-0" />
+              </a>
+            ))}
+            <a href="#contact" onClick={closeMobileMenu} className="mt-6 inline-flex h-12 items-center justify-center gap-3 bg-gold px-5 text-[0.68rem] font-semibold uppercase tracking-[0.15em] text-ink">
+              <MessageCircle size={16} /> Consult via WhatsApp
+            </a>
+          </nav>
         </div>
       </header>
 
