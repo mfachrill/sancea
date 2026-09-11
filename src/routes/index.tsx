@@ -215,7 +215,7 @@ function Index() {
               ['“The collection was beautiful and the team helped me find a kebaya that felt completely right for my graduation.”', 'Ayu Maharani', 'Graduation Styling'],
               ['“Every detail, from the fitting to the makeup, felt calm and considered. I felt so confident on the day.”', 'Citra Dewi', 'Bridal Package'],
               ['“Sancea made styling our bridesmaids effortless. The colors looked stunning together in every photograph.”', 'Nadia Putri', 'Wedding Party'],
-            ].map(([quote, name, service]) => <blockquote key={name} className="bg-ink p-7 md:p-9"><div className="mb-8 flex h-11 w-11 items-center justify-center rounded-full bg-gold-muted font-display text-xl text-gold-dark">{name.charAt(0)}</div><p className="font-display text-2xl leading-9 text-ivory/90">{quote}</p><footer className="mt-8 border-t border-ivory/15 pt-5"><p className="text-xs font-semibold uppercase tracking-[0.14em]">{name}</p><p className="mt-1 text-[0.62rem] uppercase tracking-[0.14em] text-gold">{service}</p></footer></blockquote>)}
+            ].map(([quote, name, service]) => <blockquote key={name} className="bg-ink p-7 md:p-9"><div className="mb-8 flex h-11 w-11 items-center justify-center rounded-full bg-gold-muted font-display text-xl text-gold-dark">{name?.charAt(0)}</div><p className="font-display text-2xl leading-9 text-ivory/90">{quote}</p><footer className="mt-8 border-t border-ivory/15 pt-5"><p className="text-xs font-semibold uppercase tracking-[0.14em]">{name}</p><p className="mt-1 text-[0.62rem] uppercase tracking-[0.14em] text-gold">{service}</p></footer></blockquote>)}
           </div>
         </div>
       </section>
