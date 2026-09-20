@@ -31,9 +31,8 @@ export function RentalDetails({ product, category, settings, onImage }: { produc
     "",
     "Rencana sewa:",
     "Tanggal mulai: " + (dates?.from ? format(dates.from, "d MMMM yyyy", { locale: id }) : "Belum dipilih"),
-    "Tanggal selesai: " + (dates?.to ? format(dates.to, "d MMMM yyyy", { locale: id }) : "Belum dipilih"),
     "",
-    dates?.from && dates.to
+    dates?.from
       ? "Apakah produk ini tersedia untuk tanggal tersebut? Mohon informasi total biaya dan cara booking. Terima kasih."
       : "Saya ingin konsultasi tanggal sewa, ketersediaan, dan biaya. Terima kasih.",
   ].join(String.fromCharCode(10));
