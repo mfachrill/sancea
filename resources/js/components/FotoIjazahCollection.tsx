@@ -3,7 +3,7 @@ import fotoIjazah from "@/data/foto-ijazah.json";
 
 export function FotoIjazahCollection({ language = "id" }: { language?: "id" | "en" }) {
     return (
-        <DriveCollection
+        <DriveCollection catalogCategory="foto-ijazah"
             collectionNumber="04"
             title="Foto Ijazah"
             description={language === "id" ? "Inspirasi kebaya, makeup, dan styling untuk foto ijazah yang berkesan." : "Kebaya, makeup, and styling inspiration for memorable graduation portraits."}

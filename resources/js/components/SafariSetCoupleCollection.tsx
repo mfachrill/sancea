@@ -3,7 +3,7 @@ import safariSetCouple from "@/data/safari-set-couple.json";
 
 export function SafariSetCoupleCollection({ language = "id" }: { language?: "id" | "en" }) {
     return (
-        <DriveCollection
+        <DriveCollection catalogCategory="safari-couple"
             collectionNumber="04"
             title="Safari & Set Couple"
             description={language === "id" ? "Pilihan safari dan set couple untuk tampil serasi pada momen istimewa." : "Safari and matching couple sets for a coordinated look on special occasions."}

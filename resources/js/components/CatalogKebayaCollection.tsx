@@ -3,7 +3,7 @@ import catalogKebaya from "@/data/catalog-kebaya.json";
 
 export function CatalogKebayaCollection({ language = "id" }: { language?: "id" | "en" }) {
     return (
-        <DriveCollection
+        <DriveCollection catalogCategory="kebaya"
             collectionNumber="02"
             title={language === "id" ? "Katalog Kebaya" : "Kebaya Catalogue"}
             description={language === "id" ? "Temukan kebaya berdasarkan warna, ukuran, gaya hijab, dan pilihan koleksi Sancea." : "Find kebaya by colour, size, hijab style, and the Sancea collection."}

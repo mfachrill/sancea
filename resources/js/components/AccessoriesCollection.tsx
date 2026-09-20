@@ -1,3 +1,4 @@
+import type { CollectionFilter } from "@/lib/collection-filters";
 import { useRef, useState } from "react";
 import { ArrowLeft, ArrowRight, ChevronRight, ImageIcon } from "lucide-react";
 import {
@@ -27,6 +28,7 @@ function photoCount(folder: CollectionFolder): number {
 
 export type DriveCollectionProps = {
     collectionNumber: string;
+    catalogCategory: CollectionFilter;
     title: string;
     description: string;
     root: CollectionFolder;
@@ -38,6 +40,7 @@ export type DriveCollectionProps = {
 
 export function DriveCollection({
     collectionNumber,
+    catalogCategory,
     title,
     description,
     root,
@@ -111,7 +114,7 @@ export function DriveCollection({
                     </div>
                 </div>
                 <a
-                    href="/katalog"
+                    href={"/katalog?category=" + encodeURIComponent(catalogCategory)}
                     aria-label={(language === "id" ? "Buka katalog digital: " : "Open digital catalog: ") + title}
                     className="absolute inset-0 cursor-pointer focus-visible:outline-2 focus-visible:-outline-offset-4 focus-visible:outline-gold"
                 />
@@ -273,7 +276,7 @@ export function DriveCollection({
 export function AccessoriesCollection({ language = "id" }: { language?: "id" | "en" }) {
     return (
         <DriveCollection
-            collectionNumber="07"
+            collectionNumber="07" catalogCategory="lainnya"
             title={language === "id" ? "Koleksi Lainnya" : "Other Collections"}
             description={language === "id" ? "Bros, aksesori rambut, tas, obi, dan sentuhan akhir untuk penampilan Anda." : "Brooches, hair accessories, bags, obi, and finishing touches for your look."}
             language={language}

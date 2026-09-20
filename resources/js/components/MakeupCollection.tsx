@@ -3,7 +3,7 @@ import makeup from "@/data/makeup.json";
 
 export function MakeupCollection({ language = "id" }: { language?: "id" | "en" }) {
     return (
-        <DriveCollection
+        <DriveCollection catalogCategory="makeup"
             collectionNumber="05"
             title="Makeup"
             description={language === "id" ? "Lihat contoh hasil makeup Sancea untuk momen spesial Anda." : "See examples of Sancea makeup looks for your special occasion."}

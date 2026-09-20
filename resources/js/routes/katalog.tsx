@@ -1,3 +1,4 @@
+import { collectionFilters, isCollectionFilter, matchesCollection } from "@/lib/collection-filters";
 import { useAdminPreview } from "@/hooks/useAdminPreview";
 import { AdminReturnLink } from "@/components/AdminReturnLink";
 import { getStoreFont, storeFontStylesheet } from "@/lib/store-fonts";
@@ -41,7 +42,19 @@ export const Route = createFileRoute("/katalog")({
 
 function KatalogPage() {
   const [search, setSearch] = useState("");
-  const [category, setCategory] = useState<string>("all");
+  const [category, setCategoryState] = useState<string>(() => new URLSearchParams(window.location.search).get("category") || "all");
+  function setCategory(next: string) {
+    setCategoryState(next);
+    const url = new URL(window.location.href);
+    if (next === "all") url.searchParams.delete("category");
+    else url.searchParams.set("category", next);
+    window.history.replaceState(window.history.state, "", url);
+  }
+  useEffect(() => {
+    const sync = () => setCategoryState(new URLSearchParams(window.location.search).get("category") || "all");
+    window.addEventListener("popstate", sync);
+    return () => window.removeEventListener("popstate", sync);
+  }, []);
   const canPreview = useAdminPreview();
   const preview = new URLSearchParams(canPreview ? window.location.search : "");
   const previewName = preview.get("store_name");
@@ -82,7 +95,10 @@ function KatalogPage() {
 
   const filtered = products.filter((product) => {
     const matchSearch = product.name.toLowerCase().includes(search.trim().toLowerCase());
-    const matchCategory = category === "all" || product.category_id === category;
+    const assigned = categories.find(item => item.id === product.category_id);
+    const matchCategory = category === "all" || (isCollectionFilter(category)
+      ? Boolean(assigned && matchesCollection(category, assigned))
+      : Boolean(assigned && (assigned.id === category || assigned.slug === category)));
     return matchSearch && matchCategory;
   });
 
@@ -127,6 +143,7 @@ function KatalogPage() {
               <FilterChip active={category === "all"} onClick={() => setCategory("all")}>
                 Semua
               </FilterChip>
+              {isCollectionFilter(category) && <FilterChip active onClick={() => setCategory(category)}>{collectionFilters[category].label}</FilterChip>}
               {categories.map((item) => (
                 <FilterChip
                   key={item.id}
