@@ -23,7 +23,20 @@ export function RentalDetails({ product, category, settings, onImage }: { produc
   const price = selected?.price ?? product.discount_price ?? product.price;
   const dateLabel = dates?.from ? `${format(dates.from, "d MMM yyyy", { locale: id })}${dates.to ? ` – ${format(dates.to, "d MMM yyyy", { locale: id })}` : " · pilih tanggal kembali"}` : "Pilih tanggal sewa";
   const phone = /kebaya/i.test(category + " " + product.name) ? KEBAYA_WHATSAPP : (settings?.whatsapp_number ?? KEBAYA_WHATSAPP).replace(/\D/g, "").replace(/^0/, "62");
-  const message = `Halo Kak, saya tertarik menyewa ${product.name}${selected ? ` (${selected.name})` : ""}.${dates?.from && dates.to ? ` Tanggal ${dateLabel}.` : ""} Apakah tersedia?`;
+  const message = [
+    "Halo Kak, saya ingin konsultasi sewa.",
+    "",
+    "Produk: " + product.name,
+    "Varian: " + (selected?.name ?? "Standar"),
+    "",
+    "Rencana sewa:",
+    "Tanggal mulai: " + (dates?.from ? format(dates.from, "d MMMM yyyy", { locale: id }) : "Belum dipilih"),
+    "Tanggal selesai: " + (dates?.to ? format(dates.to, "d MMMM yyyy", { locale: id }) : "Belum dipilih"),
+    "",
+    dates?.from && dates.to
+      ? "Apakah produk ini tersedia untuk tanggal tersebut? Mohon informasi total biaya dan cara booking. Terima kasih."
+      : "Saya ingin konsultasi tanggal sewa, ketersediaan, dan biaya. Terima kasih.",
+  ].join(String.fromCharCode(10));
   async function share() { try { await navigator.clipboard.writeText(window.location.href); setNotice("Link produk berhasil disalin."); } catch { setNotice("Salin alamat halaman ini untuk membagikan produk."); } }
   function toggleFavorite() { const next = !favorite; setFavorite(next); try { localStorage.setItem(`favorite:${product.id}`, next ? "1" : "0"); } catch { /* Keep selection for this visit. */ } }
   return <div className="rental-details rounded-2xl p-5 sm:p-8">
