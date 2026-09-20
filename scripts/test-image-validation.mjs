@@ -1,0 +1,14 @@
+import assert from "node:assert/strict";
+import { readFileSync } from "node:fs";
+import ts from "typescript";
+const source = readFileSync(new URL("../resources/js/lib/image-validation.ts", import.meta.url), "utf8");
+const { outputText } = ts.transpileModule(source, { compilerOptions: { module: ts.ModuleKind.ESNext, target: ts.ScriptTarget.ES2022 } });
+const { validateProductImage } = await import("data:text/javascript;base64," + Buffer.from(outputText).toString("base64"));
+assert.equal(await validateProductImage(new File([new Uint8Array([255,216,255,224])], "photo.jpg", { type: "image/jpeg" })), "jpg");
+assert.equal(await validateProductImage(new File([new Uint8Array([137,80,78,71,13,10,26,10])], "photo.png", { type: "image/png" })), "png");
+assert.equal(await validateProductImage(new File(["RIFF0000WEBP"], "photo.webp", { type: "image/webp" })), "webp");
+await assert.rejects(validateProductImage(new File(["<script>alert(1)</script>"], "photo.jpg", { type: "image/jpeg" })));
+await assert.rejects(validateProductImage(new File(["<svg/>"], "photo.svg", { type: "image/svg+xml" })));
+await assert.rejects(validateProductImage(new File([], "photo.png", { type: "image/png" })));
+await assert.rejects(validateProductImage(new File([new Uint8Array(5 * 1024 * 1024 + 1)], "photo.png", { type: "image/png" })));
+console.log("PASS: 3 image signatures accepted; spoofed, SVG, empty, and oversized uploads rejected.");

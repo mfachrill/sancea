@@ -1,0 +1,1 @@
+alter table public.settings add column if not exists catalog_appearance jsonb not null default '{}'::jsonb;
