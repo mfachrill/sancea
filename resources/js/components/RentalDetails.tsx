@@ -6,7 +6,7 @@ import { id } from "date-fns/locale";
 import { format } from "date-fns";
 import type { DateRange } from "react-day-picker";
 import { supabase } from "@/integrations/supabase/client";
-import { formatRupiah, type Product, type Settings } from "@/lib/catalog";
+import { KEBAYA_WHATSAPP, formatRupiah, type Product, type Settings } from "@/lib/catalog";
 
 export function RentalDetails({ product, category, settings, onImage }: { product: Product; category: string; settings: Settings | null | undefined; onImage: (image: string | null) => void }) {
   const [selectedId, setSelectedId] = useState("");
@@ -22,7 +22,7 @@ export function RentalDetails({ product, category, settings, onImage }: { produc
   const days = product.minimum_rental_days ?? settings?.minimum_rental_days ?? 3;
   const price = selected?.price ?? product.discount_price ?? product.price;
   const dateLabel = dates?.from ? `${format(dates.from, "d MMM yyyy", { locale: id })}${dates.to ? ` – ${format(dates.to, "d MMM yyyy", { locale: id })}` : " · pilih tanggal kembali"}` : "Pilih tanggal sewa";
-  const phone = (settings?.whatsapp_number ?? "").replace(/\D/g, "").replace(/^0/, "62");
+  const phone = /kebaya/i.test(category + " " + product.name) ? KEBAYA_WHATSAPP : (settings?.whatsapp_number ?? KEBAYA_WHATSAPP).replace(/\D/g, "").replace(/^0/, "62");
   const message = `Halo Kak, saya tertarik menyewa ${product.name}${selected ? ` (${selected.name})` : ""}.${dates?.from && dates.to ? ` Tanggal ${dateLabel}.` : ""} Apakah tersedia?`;
   async function share() { try { await navigator.clipboard.writeText(window.location.href); setNotice("Link produk berhasil disalin."); } catch { setNotice("Salin alamat halaman ini untuk membagikan produk."); } }
   function toggleFavorite() { const next = !favorite; setFavorite(next); try { localStorage.setItem(`favorite:${product.id}`, next ? "1" : "0"); } catch { /* Keep selection for this visit. */ } }

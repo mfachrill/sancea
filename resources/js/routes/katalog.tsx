@@ -10,6 +10,7 @@ import { useEffect, useMemo, useState, type CSSProperties } from "react";
 import bannerPhoto from "@/assets/sancea-hero.jpg";
 import { StorageImage } from "@/components/StorageImage";
 import {
+  KEBAYA_WHATSAPP,
   discountPercent,
   fetchCategories,
   fetchPublicProducts,
@@ -69,7 +70,7 @@ function KatalogPage() {
   const instagramHandle = instagram.replace(/^https?:\/\/(www\.)?instagram\.com\//i, "").replace(/^@/, "").split(/[/?#]/)[0];
   const address = value("store_address", settings?.store_address);
   const maps = value("maps_url", settings?.maps_url);
-  const phone = value("whatsapp_number", settings?.whatsapp_number).replace(/\D/g, "").replace(/^0/, "62");
+  const phone = KEBAYA_WHATSAPP;
   const logo = value("logo_url", settings?.logo_url);
   const font = value("store_name_font", settings?.store_name_font) || "Playball";
   const iconOnly = value("social_link_style", settings?.social_link_style) === "icon";

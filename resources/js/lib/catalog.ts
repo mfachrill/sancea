@@ -2,6 +2,7 @@ import { validateProductImage } from "./image-validation";
 import { supabase } from "@/integrations/supabase/client";
 
 export const PRODUCT_BUCKET = "product-images";
+export const KEBAYA_WHATSAPP = "6289505644663";
 
 export type Category = {
   id: string;
