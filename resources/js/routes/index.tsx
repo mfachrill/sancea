@@ -729,11 +729,7 @@ function Index() {
             <footer className="border-t border-ivory/10 bg-ink px-5 py-12 text-ivory md:px-10">
                 <div className="mx-auto grid max-w-[84rem] gap-10 md:grid-cols-[1.4fr_1fr_1fr]">
                     <div>
-                        <img
-                            src="/logo.1.png?v=20260922"
-                            alt="Sancea Kebaya & Makeup"
-                            className="h-auto w-44 max-w-full object-contain object-left"
-                        />
+                        <Wordmark inverse />
                         <p className="mt-5 max-w-xs text-sm leading-6 text-ivory/45">
                             {isIndonesian ? "Layanan sewa kebaya, makeup, dan bridal premium di Denpasar, Bali." : "Premium kebaya rental, makeup, and bridal services in Denpasar, Bali."}
                         </p>

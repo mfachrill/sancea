@@ -39,7 +39,7 @@ export default defineConfig(({ mode, command }) => {
             {
                 name: "pages-public-assets",
                 closeBundle() {
-                    for (const name of ["images", "favicon.svg", "favicon.jpeg", "favicon-sancea.png", "logo.1.png", "robots.txt", "_headers"]) {
+                    for (const name of ["images", "favicon.svg", "favicon.jpeg", "favicon-sancea.png", "robots.txt", "_headers"]) {
                         const source = resolve(root, "public", name);
                         if (existsSync(source)) cpSync(source, resolve(root, "dist", name), { recursive: true });
                     }
