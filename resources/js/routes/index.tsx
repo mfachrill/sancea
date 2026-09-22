@@ -233,7 +233,7 @@ function Index() {
                         ))}
                     </div>
                     <a
-                        href="#contact"
+                        href="https://wa.me/6289685644663" target="_blank" rel="noopener noreferrer"
                         className="hidden items-center gap-2 border border-gold px-4 py-3 text-[0.65rem] font-semibold uppercase tracking-[0.14em] text-ivory transition hover:bg-gold hover:text-ink lg:inline-flex"
                     >
                         <MessageCircle size={15} />{" "}
@@ -268,7 +268,7 @@ function Index() {
                             </a>
                         ))}
                         <a
-                            href="#contact"
+                            href="https://wa.me/6289685644663" target="_blank" rel="noopener noreferrer"
                             onClick={closeMobileMenu}
                             className="mt-6 inline-flex h-12 items-center justify-center gap-3 bg-gold px-5 text-[0.68rem] font-semibold uppercase tracking-[0.15em] text-ink"
                         >
@@ -313,7 +313,7 @@ function Index() {
                                 {isIndonesian ? "Lihat Koleksi" : "Explore Collection"} <ArrowRight size={15} />
                             </a>
                             <a
-                                href="#contact"
+                                href="https://wa.me/6289685644663" target="_blank" rel="noopener noreferrer"
                                 className="inline-flex h-12 items-center gap-3 border border-ivory/50 px-6 text-[0.68rem] font-semibold uppercase tracking-[0.15em] text-ivory transition hover:border-gold hover:text-gold"
                             >
                                 {isIndonesian ? "Konsultasi via WhatsApp" : "Consult via WhatsApp"}
@@ -550,7 +550,7 @@ function Index() {
                                         {isIndonesian ? "Pilihan yang disesuaikan dengan gaya, acara, dan preferensi Anda." : "A tailored selection to suit your style, event, and preferences."}
                                     </p>
                                     <a
-                                        href="#contact"
+                                        href="https://wa.me/6289685644663" target="_blank" rel="noopener noreferrer"
                                         className="mt-6 inline-flex items-center gap-2 text-[0.65rem] font-semibold uppercase tracking-[0.15em] text-ink"
                                     >
                                         {isIndonesian ? "Tanyakan harga" : "Ask for Price"} <ArrowRight size={14} />
@@ -713,7 +713,7 @@ function Index() {
                         {isIndonesian ? "Jelajahi koleksi kami dan konsultasikan kebutuhan acara spesial Anda bersama tim kami." : "Explore our collection and consult with our team for your special occasion."}
                     </p>
                     <a
-                        href="#contact"
+                        href="https://wa.me/6289685644663" target="_blank" rel="noopener noreferrer"
                         className="mt-9 inline-flex h-13 items-center gap-3 bg-gold px-7 text-[0.68rem] font-semibold uppercase tracking-[0.15em] text-ink transition hover:bg-gold-light"
                     >
                         <MessageCircle size={17} /> {isIndonesian ? "Konsultasi via WhatsApp" : "Consult via WhatsApp"}
@@ -724,7 +724,11 @@ function Index() {
             <footer className="border-t border-ivory/10 bg-ink px-5 py-12 text-ivory md:px-10">
                 <div className="mx-auto grid max-w-[84rem] gap-10 md:grid-cols-[1.4fr_1fr_1fr]">
                     <div>
-                        <Wordmark inverse />
+                        <img
+                            src="/logo.1.png"
+                            alt="Sancea Kebaya & Makeup"
+                            className="h-auto w-44 max-w-full object-contain object-left"
+                        />
                         <p className="mt-5 max-w-xs text-sm leading-6 text-ivory/45">
                             {isIndonesian ? "Layanan sewa kebaya, makeup, dan bridal premium di Denpasar, Bali." : "Premium kebaya rental, makeup, and bridal services in Denpasar, Bali."}
                         </p>
@@ -742,7 +746,7 @@ function Index() {
                                 <Instagram size={15} />
                                 Instagram
                             </a>
-                            <a href="#contact" className="flex items-center gap-2">
+                            <a href="https://wa.me/6289685644663" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2">
                                 <MessageCircle size={15} />
                                 WhatsApp
                             </a>
