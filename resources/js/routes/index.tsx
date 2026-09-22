@@ -730,7 +730,7 @@ function Index() {
                 <div className="mx-auto grid max-w-[84rem] gap-10 md:grid-cols-[1.4fr_1fr_1fr]">
                     <div>
                         <img
-                            src="/logo.1.png"
+                            src="/logo.1.png?v=20260922"
                             alt="Sancea Kebaya & Makeup"
                             className="h-auto w-44 max-w-full object-contain object-left"
                         />
