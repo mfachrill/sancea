@@ -139,6 +139,11 @@ function whatsappLink(number: string, message: string) {
     return `https://wa.me/${internationalNumber}?text=${encodeURIComponent(message)}`;
 }
 
+const CONSULTATION_WHATSAPP_URL = whatsappLink(
+    "089685644663",
+    "Halo Kak, saya ingin konsultasi layanan Sancea.",
+);
+
 function Wordmark({ inverse = false }: { inverse?: boolean }) {
     return (
         <div className={inverse ? "text-ivory" : "text-ink"}>
@@ -233,7 +238,7 @@ function Index() {
                         ))}
                     </div>
                     <a
-                        href="https://wa.me/6289685644663" target="_blank" rel="noopener noreferrer"
+                        href={CONSULTATION_WHATSAPP_URL} target="_blank" rel="noopener noreferrer"
                         className="hidden items-center gap-2 border border-gold px-4 py-3 text-[0.65rem] font-semibold uppercase tracking-[0.14em] text-ivory transition hover:bg-gold hover:text-ink lg:inline-flex"
                     >
                         <MessageCircle size={15} />{" "}
@@ -268,7 +273,7 @@ function Index() {
                             </a>
                         ))}
                         <a
-                            href="https://wa.me/6289685644663" target="_blank" rel="noopener noreferrer"
+                            href={CONSULTATION_WHATSAPP_URL} target="_blank" rel="noopener noreferrer"
                             onClick={closeMobileMenu}
                             className="mt-6 inline-flex h-12 items-center justify-center gap-3 bg-gold px-5 text-[0.68rem] font-semibold uppercase tracking-[0.15em] text-ink"
                         >
@@ -313,7 +318,7 @@ function Index() {
                                 {isIndonesian ? "Lihat Koleksi" : "Explore Collection"} <ArrowRight size={15} />
                             </a>
                             <a
-                                href="https://wa.me/6289685644663" target="_blank" rel="noopener noreferrer"
+                                href={CONSULTATION_WHATSAPP_URL} target="_blank" rel="noopener noreferrer"
                                 className="inline-flex h-12 items-center gap-3 border border-ivory/50 px-6 text-[0.68rem] font-semibold uppercase tracking-[0.15em] text-ivory transition hover:border-gold hover:text-gold"
                             >
                                 {isIndonesian ? "Konsultasi via WhatsApp" : "Consult via WhatsApp"}
@@ -550,7 +555,7 @@ function Index() {
                                         {isIndonesian ? "Pilihan yang disesuaikan dengan gaya, acara, dan preferensi Anda." : "A tailored selection to suit your style, event, and preferences."}
                                     </p>
                                     <a
-                                        href="https://wa.me/6289685644663" target="_blank" rel="noopener noreferrer"
+                                        href={CONSULTATION_WHATSAPP_URL} target="_blank" rel="noopener noreferrer"
                                         className="mt-6 inline-flex items-center gap-2 text-[0.65rem] font-semibold uppercase tracking-[0.15em] text-ink"
                                     >
                                         {isIndonesian ? "Tanyakan harga" : "Ask for Price"} <ArrowRight size={14} />
@@ -713,7 +718,7 @@ function Index() {
                         {isIndonesian ? "Jelajahi koleksi kami dan konsultasikan kebutuhan acara spesial Anda bersama tim kami." : "Explore our collection and consult with our team for your special occasion."}
                     </p>
                     <a
-                        href="https://wa.me/6289685644663" target="_blank" rel="noopener noreferrer"
+                        href={CONSULTATION_WHATSAPP_URL} target="_blank" rel="noopener noreferrer"
                         className="mt-9 inline-flex h-13 items-center gap-3 bg-gold px-7 text-[0.68rem] font-semibold uppercase tracking-[0.15em] text-ink transition hover:bg-gold-light"
                     >
                         <MessageCircle size={17} /> {isIndonesian ? "Konsultasi via WhatsApp" : "Consult via WhatsApp"}
@@ -746,7 +751,7 @@ function Index() {
                                 <Instagram size={15} />
                                 Instagram
                             </a>
-                            <a href="https://wa.me/6289685644663" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2">
+                            <a href={CONSULTATION_WHATSAPP_URL} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2">
                                 <MessageCircle size={15} />
                                 WhatsApp
                             </a>
