@@ -1,14 +1,5 @@
 import type { Category } from "@/lib/catalog";
-
-const colorSlugs = new Set([
-  "kebaya-marun", "kebaya-hitam", "kebaya-biru", "kebaya-hijau",
-  "kebaya-pink", "kebaya-ungu", "kebaya-gold", "kebaya-silver",
-  "kebaya-putih", "kebaya-coklat",
-]);
-
-export function isKebayaColor(category: Category) {
-  return colorSlugs.has(category.slug);
-}
+import { isKebayaColor } from "@/lib/kebaya-categories";
 
 export function KebayaCategorySelect({ categories, value, onChange, className }: {
   categories: Category[];
