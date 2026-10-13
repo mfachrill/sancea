@@ -92,6 +92,9 @@ function KatalogPage() {
     () => Object.fromEntries(categories.map((c) => [c.id, c.name])),
     [categories],
   );
+  const kebayaCategories = categories.filter((item) => item.slug.startsWith("kebaya-"));
+  const selectedCategory = categories.find((item) => item.id === category || item.slug === category);
+  const showKebayaOptions = category === "kebaya" || Boolean(selectedCategory?.slug === "kebaya" || selectedCategory?.slug.startsWith("kebaya-"));
 
   const filtered = products.filter((product) => {
     const matchSearch = product.name.toLowerCase().includes(search.trim().toLowerCase());
@@ -143,8 +146,9 @@ function KatalogPage() {
               <FilterChip active={category === "all"} onClick={() => setCategory("all")}>
                 Semua
               </FilterChip>
-              {isCollectionFilter(category) && <FilterChip active onClick={() => setCategory(category)}>{collectionFilters[category].label}</FilterChip>}
-              {categories.map((item) => (
+              <FilterChip active={showKebayaOptions} onClick={() => setCategory("kebaya")}>Kebaya</FilterChip>
+              {isCollectionFilter(category) && category !== "kebaya" && <FilterChip active onClick={() => setCategory(category)}>{collectionFilters[category].label}</FilterChip>}
+              {categories.filter((item) => item.slug !== "kebaya" && !item.slug.startsWith("kebaya-")).map((item) => (
                 <FilterChip
                   key={item.id}
                   active={category === item.id}
@@ -154,6 +158,24 @@ function KatalogPage() {
                 </FilterChip>
               ))}
             </div>
+            {showKebayaOptions && <>
+              <div className="border-l-2 border-gold pl-4 sm:hidden">
+                <label htmlFor="kebaya-color" className="block text-xs font-semibold uppercase tracking-wide text-ink">Pilihan Kebaya</label>
+                <select
+                  id="kebaya-color"
+                  value={selectedCategory?.slug.startsWith("kebaya-") ? selectedCategory.id : "kebaya"}
+                  onChange={(event) => setCategory(event.target.value)}
+                  className="mt-2 h-11 w-full rounded-xl border border-border bg-white px-3 text-sm text-ink outline-none focus:border-gold"
+                >
+                  <option value="kebaya">Semua Kebaya</option>
+                  {kebayaCategories.map((item) => <option key={item.id} value={item.id}>{item.name}</option>)}
+                </select>
+              </div>
+              <div className="hidden flex-wrap gap-2 border-l-2 border-gold pl-4 sm:flex" aria-label="Pilihan kebaya">
+                <FilterChip active={category === "kebaya" || selectedCategory?.slug === "kebaya"} onClick={() => setCategory("kebaya")}>Semua Kebaya</FilterChip>
+                {kebayaCategories.map((item) => <FilterChip key={item.id} active={category === item.id || category === item.slug} onClick={() => setCategory(item.id)}>{item.name}</FilterChip>)}
+              </div>
+            </>}
           </div>
 
           <div className="mt-6 grid grid-cols-2 gap-4 md:grid-cols-3">

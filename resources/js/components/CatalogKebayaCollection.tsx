@@ -1,6 +1,17 @@
 import { DriveCollection } from "@/components/AccessoriesCollection";
 import catalogKebaya from "@/data/catalog-kebaya.json";
 
+const colorFolders = catalogKebaya.folders.filter((folder) =>
+    /^(Merah-Maroon|Hitam-Putih|Biru-Navy|Gold-Kuning-Orange|Hijau-Sage-Emerald-Turkis|Pink-Rose Gold|Silver-Abu|Skin-Nude-Coklat|Ungu-Burgundy-Lavender)$/.test(folder.name),
+);
+const kebayaByColor = {
+    ...catalogKebaya,
+    folders: [
+        ...colorFolders,
+        ...catalogKebaya.folders.filter((folder) => !colorFolders.includes(folder)),
+    ],
+};
+
 export function CatalogKebayaCollection({ language = "id" }: { language?: "id" | "en" }) {
     return (
         <DriveCollection catalogCategory="kebaya"
@@ -8,7 +19,8 @@ export function CatalogKebayaCollection({ language = "id" }: { language?: "id" |
             title={language === "id" ? "Katalog Kebaya" : "Kebaya Catalogue"}
             description={language === "id" ? "Temukan kebaya berdasarkan warna, ukuran, gaya hijab, dan pilihan koleksi Sancea." : "Find kebaya by colour, size, hijab style, and the Sancea collection."}
             language={language}
-            root={catalogKebaya}
+            root={kebayaByColor}
+            openInDialog
             layoutClassName="lg:col-span-5"
             coverPhotoIds={[
                 "1HaogYFkyOjxVD0tySwv4jB_2h4DJ3IUA",
@@ -16,6 +28,9 @@ export function CatalogKebayaCollection({ language = "id" }: { language?: "id" |
                 "1pFCZWvnRtIQ9UgMH0Qt-yT24vAosU5Hj",
             ]}
             labels={{
+                "Merah-Maroon": "Kebaya Merah & Maroon",
+                "Hitam-Putih": "Kebaya Hitam & Putih",
+                "Biru-Navy": "Kebaya Biru & Navy",
                 "A.Koleksi Big Size 2XL-5XL": "Koleksi Big Size 2XL–5XL",
                 "A.Koleksi Xtra Small (XS)": "Koleksi Xtra Small (XS)",
                 "B. Refrensi Kebaya Hijab": "Referensi Kebaya Hijab",

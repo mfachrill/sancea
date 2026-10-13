@@ -36,6 +36,7 @@ export type DriveCollectionProps = {
     layoutClassName?: string;
     coverPhotoIds?: string[];
     language?: "id" | "en";
+    openInDialog?: boolean;
 };
 
 export function DriveCollection({
@@ -48,6 +49,7 @@ export function DriveCollection({
     layoutClassName = "sm:col-span-2 lg:col-span-12 lg:max-h-[25rem]",
     coverPhotoIds,
     language = "id",
+    openInDialog = false,
 }: DriveCollectionProps) {
     const [trail, setTrail] = useState<CollectionFolder[]>([root]);
     const [selected, setSelected] = useState<CollectionPhoto | null>(null);
@@ -113,11 +115,21 @@ export function DriveCollection({
                         </span>
                     </div>
                 </div>
-                <a
-                    href={"/katalog?category=" + encodeURIComponent(catalogCategory)}
-                    aria-label={(language === "id" ? "Buka katalog digital: " : "Open digital catalog: ") + title}
-                    className="absolute inset-0 cursor-pointer focus-visible:outline-2 focus-visible:-outline-offset-4 focus-visible:outline-gold"
-                />
+                {openInDialog ? (
+                    <DialogTrigger asChild>
+                        <button
+                            type="button"
+                            aria-label={(language === "id" ? "Lihat pilihan " : "View options for ") + title}
+                            className="absolute inset-0 cursor-pointer focus-visible:outline-2 focus-visible:-outline-offset-4 focus-visible:outline-gold"
+                        />
+                    </DialogTrigger>
+                ) : (
+                    <a
+                        href={"/katalog?category=" + encodeURIComponent(catalogCategory)}
+                        aria-label={(language === "id" ? "Buka katalog digital: " : "Open digital catalog: ") + title}
+                        className="absolute inset-0 cursor-pointer focus-visible:outline-2 focus-visible:-outline-offset-4 focus-visible:outline-gold"
+                    />
+                )}
             </article>
 
             <DialogContent className="flex h-[90dvh] max-h-[900px] w-[calc(100%_-_1rem)] max-w-6xl flex-col gap-0 overflow-hidden rounded-none border-gold/20 p-0">
