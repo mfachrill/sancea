@@ -10,7 +10,7 @@ export function KebayaCategorySelect({ categories, value, onChange, className }:
   const colors = categories.filter(isKebayaColor);
   const selected = categories.find(category => category.id === value);
   const kebaya = categories.find(category => category.slug === "kebaya");
-  const group = selected && isKebayaColor(selected) ? "kebaya" : selected?.id ?? "";
+  const group = selected && (selected.slug === "kebaya" || isKebayaColor(selected)) ? "kebaya" : selected?.id ?? "";
 
   return <div className="space-y-3">
     <select className={className} value={group} onChange={event => onChange(event.target.value === "kebaya" ? kebaya?.id ?? "" : event.target.value)}>
